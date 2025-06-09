@@ -57,7 +57,7 @@ body::before {
 }
 
 .header {
-    margin-top: 4rem;
+    margin-top: 3rem;
     text-align: center;
     margin-bottom: 3rem;
 }
@@ -67,7 +67,7 @@ body::before {
     font-size: 6rem;
     font-weight: 600;
     color: #171717;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0rem;
     letter-spacing: -0.025em;
 }
 
