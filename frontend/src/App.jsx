@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
 import "./App.css";
+
 function ResumeInterviewApp() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -21,23 +21,25 @@ function ResumeInterviewApp() {
       setError("Please upload a resume file.");
       return;
     }
+
     setLoading(true);
     setError("");
     setQuestions([]);
     setFeedback("");
+
     const formData = new FormData();
     formData.append("resume", file);
+
     try {
-      const response = await fetch(
-        "https://your-backend-api.com/process-resume",
-        {
-          method: "POST",
-          body: formData,
-        },
-      );
+      const response = await fetch("http://localhost:3001/process-resume", {
+        method: "POST",
+        body: formData,
+      });
+
       if (!response.ok) {
         throw new Error("Failed to process resume.");
       }
+
       const data = await response.json();
       setQuestions(data.questions || []);
       setFeedback(data.feedback || "No feedback received.");
@@ -53,10 +55,12 @@ function ResumeInterviewApp() {
       <div className="header">
         <h1>interview.ai</h1>
         <p>
-          Upload your resume.<br></br> Get tailored interview questions and
-          feedback
+          Upload your resume.
+          <br />
+          Get tailored interview questions and feedback
         </p>
       </div>
+
       <div className="upload-card">
         <form onSubmit={handleSubmit} className="upload-form">
           <div className="file-input-wrapper">
@@ -71,6 +75,7 @@ function ResumeInterviewApp() {
               {file ? file.name : "Choose resume file"}
             </label>
           </div>
+
           {file && (
             <div className="file-preview-card">
               <div className="file-preview-content">
@@ -94,6 +99,7 @@ function ResumeInterviewApp() {
               </div>
             </div>
           )}
+
           <button
             type="submit"
             disabled={loading || !file}
@@ -103,7 +109,9 @@ function ResumeInterviewApp() {
           </button>
         </form>
       </div>
+
       {error && <div className="error-message">{error}</div>}
+
       {questions.length > 0 && (
         <div className="results-card">
           <h3>Interview Questions</h3>
@@ -114,6 +122,7 @@ function ResumeInterviewApp() {
           </ul>
         </div>
       )}
+
       {feedback && (
         <div className="results-card">
           <h3>Resume Feedback</h3>
