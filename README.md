@@ -1,4 +1,4 @@
-# resume.ai
+# interviewAI
 
 Interview questions and resume feedback.
 
